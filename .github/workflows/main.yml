@@ -1,22 +1,30 @@
-name: SonarQube Analysis
+name: Python SonarQube Scan
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  sonarqube:
+  sonar:
+    name: SonarQube Analysis
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Run SonarQube Analysis
-        uses: sonarsource/sonarqube-scan-action@v3.0.0
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
         env:
-          sonarqube-token: ${{ secrets.SONARQUBE_TOKEN }}
-          sonarqube-url: https://sonarqube.web.musketeers.dev
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarqube.web.musketeers.dev
+        with:
+          args: >
+            -Dsonar.projectKey=sonarqube
+            -Dsonar.sources=.
+            -Dsonar.python.version=3
+          
          
 
       
