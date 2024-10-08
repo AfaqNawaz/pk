@@ -32,3 +32,4 @@ jobs:
           sonarqube-token: ${{ secrets.SONARQUBE_TOKEN }}
           sonarqube-url: https://sonarqube.web.musketeers.dev
           report-path: ./sonarqube-report.json
+          
