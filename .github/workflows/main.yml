@@ -11,25 +11,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Login to SonarQube
-        uses: github.com/SonarSource/sonarqube-action@v1
-        with:
-          sonarqube-token: ${{ secrets.SONARQUBE_TOKEN }}
-          sonarqube-url: https://sonarqube.web.musketeers.dev
-
+        
       - name: Run SonarQube Analysis
-        uses: github.com/SonarSource/sonarqube-action@v1
+        uses: sonarsource/sonarqube-scan-action@v3.0.0
         with:
           sonarqube-token: ${{ secrets.SONARQUBE_TOKEN }}
           sonarqube-url: https://sonarqube.web.musketeers.dev
           scanner-mode: CLI
           cli-args: --languages=python -- sources=. --include=**/*.py
 
-      - name: Upload SonarQube Report
-        uses: github.com/SonarSource/sonarqube-action@v1
-        with:
-          sonarqube-token: ${{ secrets.SONARQUBE_TOKEN }}
-          sonarqube-url: https://sonarqube.web.musketeers.dev
-          report-path: ./sonarqube-report.json
+      
           
