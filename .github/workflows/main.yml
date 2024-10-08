@@ -13,13 +13,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Login to SonarQube
-        uses: sonarqube-community/sonarqube-github-action@v1
+        uses: github.com/SonarSource/sonarqube-action@v1
         with:
           sonarqube-token: ${{ secrets.SONARQUBE_TOKEN }}
           sonarqube-url: https://sonarqube.web.musketeers.dev
 
       - name: Run SonarQube Analysis
-        uses: sonarqube-community/sonarqube-github-action@v1
+        uses: github.com/SonarSource/sonarqube-action@v1
         with:
           sonarqube-token: ${{ secrets.SONARQUBE_TOKEN }}
           sonarqube-url: https://sonarqube.web.musketeers.dev
@@ -27,7 +27,7 @@ jobs:
           cli-args: --languages=python -- sources=. --include=**/*.py
 
       - name: Upload SonarQube Report
-        uses: sonarqube-community/sonarqube-github-action@v1
+        uses: github.com/SonarSource/sonarqube-action@v1
         with:
           sonarqube-token: ${{ secrets.SONARQUBE_TOKEN }}
           sonarqube-url: https://sonarqube.web.musketeers.dev
